@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6312717372051313964}
-  - component: {fileID: -5438480718553607305}
+  - component: {fileID: 1627125236222300895}
   m_Layer: 0
   m_Name: Structure_Wall
   m_TagString: Untagged
@@ -33,8 +33,8 @@ Transform:
   - {fileID: 718044235261930173}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &-5438480718553607305
-BoxCollider:
+--- !u!64 &1627125236222300895
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51,9 +51,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2261007740560976508, guid: 90b7382921f9c9749abf5eda53d83cea, type: 3}
 --- !u!1001 &1044193067637181782
 PrefabInstance:
   m_ObjectHideFlags: 0
