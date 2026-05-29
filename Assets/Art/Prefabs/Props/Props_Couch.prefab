@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4890990541340484936}
+  - component: {fileID: -7061732655038393769}
   m_Layer: 0
   m_Name: Props_Couch
   m_TagString: Untagged
@@ -32,6 +33,28 @@ Transform:
   - {fileID: 5000676160726354680}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &-7061732655038393769
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487980556061000526}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -9172289417969470128, guid: 3f6cf095ac35cd24f9897c9ea4af5387, type: 3}
 --- !u!1 &938968889789265090
 GameObject:
   m_ObjectHideFlags: 0
