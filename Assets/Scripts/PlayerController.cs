@@ -1,45 +1,53 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 5f;
 
+    [Header("Mouse Look")]
+    [SerializeField] private float mouseSensitivity = 200f;
+    
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private float speed;
-   
+    private Camera playerCamera;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float mouseX;
+    private float mouseY;
+    
+    private void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        float ZAxis = 0f;
-        float XAxis = 0f;
-        
-        if (Input.GetKey(KeyCode.W))
-        {
-            ZAxis = 1;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            XAxis = -1;
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            ZAxis = -1;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            XAxis = 1;
-        }
-        
-        rb.linearVelocity = new Vector3(XAxis, rb.linearVelocity.y, ZAxis * speed);
+        rb = GetComponent<Rigidbody>();
+        playerCamera = GetComponentInChildren<Camera>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     
+    private void Update()
+    {
+        CalculateMouseAndCam();
+        CalculateMovement();
+    }
+
+    private void CalculateMouseAndCam()
+    {
+        mouseX += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        mouseY += Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        transform.localRotation = Quaternion.Euler(0f, mouseX, 0f);
+        //clamp the y value between 90 and -90 so you cannot break your players neck
+        var ClampedY = Mathf.Clamp(mouseY, -90f, 90f);
+        playerCamera.transform.localRotation = Quaternion.Euler(-ClampedY, 0f, 0f);
+    }
+
+    private void CalculateMovement()
+    {
+        float moveX = Input.GetAxisRaw("Horizontal"); // A/D or Left/Right
+        float moveZ = Input.GetAxisRaw("Vertical");   // W/S or Up/Down
+        Vector3 moveDirection = (transform.right * moveX + transform.forward * moveZ).normalized;
+        rb.linearVelocity = new Vector3(moveDirection.x * moveSpeed, rb.linearVelocity.y, moveDirection.z * moveSpeed);
+    }
+
 }
