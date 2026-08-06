@@ -62,10 +62,10 @@ Material:
     - _AlphaClipping: 0
     - _DistortionAmount: 1
     - _DistortionScale: 3
-    - _DistortionSpeed: 0.2
+    - _DistortionSpeed: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 1
+    - _Speed: 0.5
     m_Colors:
     - _BGColour: {r: 0.8742138, g: 0.12370937, b: 0.12370937, a: 1}
     - _Color: {r: 0, g: 0.46407735, b: 0.5597484, a: 1}
