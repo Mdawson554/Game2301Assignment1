@@ -19,7 +19,6 @@ public class DiscoFloorChanger : MonoBehaviour
         Renderer renderer = GetComponent<Renderer>();
         if (renderer == null)
         {
-            Debug.LogError("DiscoFloorChanger: No Renderer component found on this GameObject!");
             return;
         }
         discoMaterial = renderer.materials[materialIndex];
@@ -31,30 +30,18 @@ public class DiscoFloorChanger : MonoBehaviour
     {
         while (true)
         {
-            // Get current and next color
             Color currentColor = colorSequence[currentColorIndex];
             Color nextColor = colorSequence[(currentColorIndex + 1) % colorSequence.Length];
-
-            // Smoothly transition between colors over transitionTime
             float elapsedTime = 0f;
             while (elapsedTime < transitionTime)
             {
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / transitionTime;
-
-                // Lerp between current and next color
                 Color lerpedColor = Color.Lerp(currentColor, nextColor, t);
-
-                // Apply to emission
                 discoMaterial.SetColor("_EmissionColor", lerpedColor);
-
                 yield return null;
             }
-
-            // Ensure we end exactly at the next color
             discoMaterial.SetColor("_EmissionColor", nextColor);
-
-            // Move to next color
             currentColorIndex = (currentColorIndex + 1) % colorSequence.Length;
         }
     }
